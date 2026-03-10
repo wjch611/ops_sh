@@ -22,12 +22,12 @@ echo "----------------------------------------" | tee -a $OUTPUT
 for table in $tables
 do
     # 获取行数
-    rows=$(mysql -h$HOST -u$USER -p$PASS -N -e "
+    rows=$(mysql -N -e "
     SELECT COUNT(*) FROM $DB.$table;
     ")
 
     # 获取 checksum
-    checksum=$(mysql -h$HOST -u$USER -p$PASS -N -e "
+    checksum=$(mysql -N -e "
     CHECKSUM TABLE $DB.$table;
     " | awk '{print $2}')
 
